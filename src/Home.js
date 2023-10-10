@@ -1,26 +1,22 @@
 import { useState } from "react";
-
 const Home = () => {
 
-    const handleClick = (e) =>
-    {
-        // e represents the event
-        console.log(e);
-        console.log("first button clicked");
-    }
-    
-    const handleClickAgain = (name, e) =>
-    {
-        console.log(e);
-        console.log("second button clicked ");
-        console.log(name);
-    }
+    const [blogs, setBlogs] = useState([
+        { title: 'My new website', body: 'lorem ipsum...', author: 'chehab', id: 1},
+        { title: 'Welcome',        body: 'lorem ipsum...', author: 'hanaa',  id: 2},
+        { title: 'Learning React', body: 'lorem ipsum...', author: 'omar',   id: 3}
+    ]);
 
     return ( 
         <div className="home">
-            <h2>HomePage</h2>
-            <button onClick={handleClick}>Click me</button>
-            <button onClick={(e) => handleClickAgain('chehab', e)}>Click me again</button>
+            {
+                blogs.map((blog) => 
+                    <div className="blog-preview" key={blog.id}>
+                        <h2>{blog.title}</h2>
+                        <p>Written by {blog.author}</p>
+                    </div>
+                )
+            }
         </div>
      );
 }
